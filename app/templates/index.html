@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERSONALIZED NEWS DASHBOARD</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>PERSONALIZED NEWS DASHBOARD</h1>
+        <!-- Authentication section for registration and login -->
+        <div id="auth-section">
+            <h2>Register / Login</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button id="registerBtn">Register</button>
+            <button id="loginBtn">Login</button>
+            <div id="auth-message"></div>
+        </div>
+
+        <!-- News section for fetching and displaying news articles -->
+        <div id="news-section" style="display:none;">
+            <h2>Fetch News</h2>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="india">India</option>
+                    <option value="sports">Sports</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="science">Science</option>
+                    <option value="world">World</option>
+                    <option value="technology">Technology</option>
+                    <option value="top-stories">Top Stories</option>
+                    <option value="most-recent">Most Recent</option>
+                    <option value="business">Business</option>
+                    <option value="us">US</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="life-style">Life Style</option>
+                    <option value="astrology">Astrology</option>
+                    <option value="nri">NRI</option>
+                    <option value="environment">Environment</option>
+                    <option value="education">Education</option>
+                </select>
+            </div>
+            <button id="fetchNewsBtn">Fetch News</button>
+            <div id="news-results"></div>
+        </div>
+    </div>
+    <!-- Link to the external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

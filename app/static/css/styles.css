@@ -1,0 +1,74 @@
+/* Set the default font family, margin, padding, and background color for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Style for the container div to center it and add padding, background color, and shadow */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center align the main heading */
+h1 {
+    text-align: center;
+}
+
+/* Style for form groups to add bottom margin */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Style for labels to display them as block elements with a bottom margin */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style for input and select elements to make them full width and add padding */
+input, select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Style for buttons to add padding, right margin, and change cursor to pointer */
+button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Style for authentication message to add top margin and set text color to red */
+#auth-message {
+    margin-top: 10px;
+    color: red;
+}
+
+/* Style for individual news items to add bottom border and padding */
+.news-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+/* Style for news item headings to remove margin */
+.news-item h3 {
+    margin: 0;
+}
+
+/* Style for news item paragraphs to add top and bottom margin */
+.news-item p {
+    margin: 5px 0;
+}
+
+/* Style for news item links to set color and remove underline */
+.news-item a {
+    color: #007bff;
+    text-decoration: none;
+}

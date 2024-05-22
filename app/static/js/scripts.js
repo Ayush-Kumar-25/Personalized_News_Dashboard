@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const authMessage = document.getElementById('auth-message');
     const newsSection = document.getElementById('news-section');
     const newsResults = document.getElementById('news-results');
-    
+
     let accessToken = '';
 
     // Add event listener for the register button
     registerBtn.addEventListener('click', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        
+
         // Send a POST request to the /register endpoint
         fetch('/register', {
             method: 'POST',
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginBtn.addEventListener('click', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        
+
         // Send a POST request to the /login endpoint
         fetch('/login', {
             method: 'POST',
@@ -69,21 +69,32 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => response.json())
         .then(data => {
+            // Clear previous news results
             newsResults.innerHTML = '';
+
             if (data.message) {
                 // Display error message if present
                 newsResults.textContent = data.message;
             } else {
                 // Display fetched news articles
                 data.forEach(news => {
+                    // Create a news item div
                     const newsItem = document.createElement('div');
                     newsItem.classList.add('news-item');
-                    newsItem.innerHTML = `
-                        <h3>${news.heading}</h3>
-                        <p>${news.summary}</p>
-                        <p><strong>Sentiment Score:</strong> ${news.sentiment_score}</p>
-                        <a href="${news.link}" target="_blank">Read more</a>
+
+                    // Construct the news item content
+                    const newsContent = `
+                        <h3>${news.heading || 'No title available'}</h3>
+                        ${news.image ? `<img src="${news.image}" alt="News Image" style="  width: 100px; max width: None; margin: 10px 0;">` : ''}
+                        <p>${news.summary ? news.summary : 'No summary available'}</p>
+                        <p><strong>Sentiment Score:</strong> ${news.sentiment_score !== undefined ? news.sentiment_score : 'No score available'}</p>
+                        <a href="${news.link || '#'}" target="_blank">Read more</a>
                     `;
+
+                    // Set the inner HTML of the news item
+                    newsItem.innerHTML = newsContent;
+
+                    // Append the news item to the results container
                     newsResults.appendChild(newsItem);
                 });
             }

@@ -16,11 +16,14 @@ def extract_news_details(feed: List[Dict[str, Any]]) -> List[Dict[str, str]]:
         List[Dict[str, str]]: A list of dictionaries with news details including heading, link, and image.
     """
     news_details: List[Dict[str, str]] = []
+    seen_images: set[str] = set()
+
     for item in feed:
         if isinstance(item, dict):
-            # Extract the heading and link from the item
-            heading: str = item.get("title", "")
-            link: str = item.get("link", "")
+            # Extract the heading, link, and summary from the item
+            heading: str = item.get("title", "No title available")
+            link: str = item.get("link", "#")
+            summary: str = item.get("summary", "No summary available")
             image: str = ""
 
             # Extract image link if available
@@ -28,11 +31,22 @@ def extract_news_details(feed: List[Dict[str, Any]]) -> List[Dict[str, str]]:
             if isinstance(links, list):
                 for link_item in links:
                     if link_item.get("type", "").startswith("image"):
-                        image = link_item.get("href", "")
-                        break
+                        image_url = link_item.get("href", "")
+                        if image_url not in seen_images:
+                            seen_images.add(image_url)
+                            break
+
+            # Calculate the sentiment score
+            sentiment_score: float = calculate_sentiment_score(heading)
 
             # Create a dictionary with the news details
-            news: Dict[str, str] = {"heading": heading, "link": link, "image": image}
+            news: Dict[str, str] = {
+                "heading": heading,
+                "link": link,
+                "summary": summary,
+                "sentiment_score": sentiment_score,
+                "image": image
+            }
             news_details.append(news)
     return news_details
 

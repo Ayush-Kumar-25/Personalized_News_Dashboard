@@ -84,3 +84,12 @@ button:hover {
 .news-item a:hover {
     text-decoration: underline;
 }
+
+/*Hide small images */
+.small-image {
+    display: none;
+}
+/* Style for all images on the page to set width and maintain aspect ratio */ 
+img { 
+    width: 100%; height: auto; 
+} 
